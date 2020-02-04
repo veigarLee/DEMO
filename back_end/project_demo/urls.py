@@ -23,4 +23,7 @@ from project_demo.app_demo import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('index/', views.index ),
+    path('', views.index ),
+    path('login', views.LoginAPI.as_view() ),
+    path('register/', views.RegisterAPI.as_view()),
 ]

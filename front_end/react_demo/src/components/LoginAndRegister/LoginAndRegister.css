@@ -1,0 +1,18 @@
+
+  .login-form-button {
+    width: 100%;
+  }
+  
+  .ContainerCard{
+      width: 400px;
+  }
+  
+  .Container{
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}

@@ -647,3 +647,6 @@ back_end/.venv/lib/python3.6/site-packages/setuptools-28.8.0.dist-info/RECORD
 back_end/.venv/lib/python3.6/site-packages/setuptools-28.8.0.dist-info/top_level.txt
 back_end/.venv/lib/python3.6/site-packages/setuptools-28.8.0.dist-info/WHEEL
 back_end/.venv/lib/python3.6/site-packages/setuptools-28.8.0.dist-info/zip-safe
+
+front_end/react_demo/node_modules/.cache/babel-loader
+front_end/react_demo/node_modules/.cache/eslint-loader

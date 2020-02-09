@@ -31,7 +31,7 @@ class LoginAndRegisterBase extends Component {
                     username: values[StringResource.username],
                     password: values[StringResource.password],
                 })
-                if (res.data.status == 200) {
+                if (res.data.status === 200) {
                     // message.success(res.data.message);
                     this.props.history.replace({
                         pathname: '/',
@@ -62,7 +62,7 @@ class LoginAndRegisterBase extends Component {
                     password: values[StringResource.register_password],
                 })
 
-                if (res.data.status == 200) {
+                if (res.data.status === 200) {
                     message.success(res.data.message);
                 }
                 else {

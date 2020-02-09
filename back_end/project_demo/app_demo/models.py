@@ -9,3 +9,8 @@ class UserModel(models.Model):
     def verify_password(self, password):
         return self.password == password
 
+
+class CustomerModel(models.Model):
+    name = models.CharField(max_length=32)
+    age = models.DecimalField(max_digits= 100 , decimal_places= 0)
+    address = models.CharField(max_length=256)

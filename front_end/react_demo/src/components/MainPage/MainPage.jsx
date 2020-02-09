@@ -5,26 +5,28 @@ import React, { Component } from 'react'
 import 'antd/dist/antd.css';
 import './MainPage.css';
 import { Layout, Menu, Icon } from 'antd';
-import { Redirect } from 'react-router-dom'
+import { Redirect, Switch, Route ,Link } from 'react-router-dom'
+
+import CrudDemo from '../CrudDemo/CrudDemo'
 
 const { Header, Sider, Content } = Layout;
 
 export default class MainPage extends Component {
-    
+
     constructor(props) {
         super(props);
-        if(this.props.history.location.state){
-            this.state.username  = this.props.history.location.state.username;
-            this.state.token  = this.props.history.location.state.token;
+        if (this.props.history.location.state) {
+            this.state.username = this.props.history.location.state.username;
+            this.state.token = this.props.history.location.state.token;
         }
 
-      }
-    
+    }
+
     state = {
         collapsed: false,
-        
+
         username: '',
-        token :'',
+        token: '',
     };
 
     toggle = () => {
@@ -36,9 +38,9 @@ export default class MainPage extends Component {
 
 
     render() {
-        const {username , token} = this.state;
+        const { username, token } = this.state;
         if (username === '' || token === '') {
-            return (<Redirect to="/login"></Redirect>)
+            // return (<Redirect to="/login"></Redirect>)
         }
         return (
             <Layout>
@@ -46,12 +48,19 @@ export default class MainPage extends Component {
                     <div className="logo" />
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1">
-                            <Icon type="user" />
-                            <span>nav 1</span>
+                            <Link to="/CrudDemo">
+                                <Icon type="user" />
+                                <span>Crud Demo</span>
+                            </Link> 
                         </Menu.Item>
+
+
                         <Menu.Item key="2">
-                            <Icon type="video-camera" />
-                            <span>nav 2</span>
+                            <Link to="/ChartDemo">
+                                <Icon type="video-camera" />
+                                <span>Chart Demo</span>
+                            </Link>
+
                         </Menu.Item>
                         <Menu.Item key="3">
                             <Icon type="upload" />
@@ -75,8 +84,12 @@ export default class MainPage extends Component {
                             minHeight: 280,
                         }}
                     >
-                        Content sss {this.state.token}
-                </Content>
+                        {/* Content sss {this.state.token} */}
+                        <Switch>
+                            <Route path="/CrudDemo" component={CrudDemo}></Route>
+                            <Redirect to="/CrudDemo" ></Redirect>
+                        </Switch>
+                    </Content>
                 </Layout>
             </Layout>
         );

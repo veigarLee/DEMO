@@ -40,7 +40,7 @@ export default class MainPage extends Component {
     render() {
         const { username, token } = this.state;
         if (username === '' || token === '') {
-            // return (<Redirect to="/login"></Redirect>)
+            return (<Redirect to="/login"></Redirect>)
         }
         return (
             <Layout>
@@ -84,9 +84,8 @@ export default class MainPage extends Component {
                             minHeight: 280,
                         }}
                     >
-                        {/* Content sss {this.state.token} */}
                         <Switch>
-                            <Route path="/CrudDemo" component={CrudDemo}></Route>
+                            <Route path="/CrudDemo" ><CrudDemo token = {this.state.token}/></Route>
                             <Redirect to="/CrudDemo" ></Redirect>
                         </Switch>
                     </Content>

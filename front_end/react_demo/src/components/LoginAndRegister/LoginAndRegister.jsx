@@ -32,7 +32,6 @@ class LoginAndRegisterBase extends Component {
                     password: values[StringResource.password],
                 })
                 if (res.data.status === 200) {
-                    // message.success(res.data.message);
                     this.props.history.replace({
                         pathname: '/',
                         state: {

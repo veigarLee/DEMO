@@ -3,12 +3,14 @@ from project_demo.app_demo.models import UserModel
 from project_demo.app_demo.models import CustomerModel
 from rest_framework import serializers
 from rest_framework.views import APIView
-# from rest_framework.response import Response
 from django.http import JsonResponse
 
 from django.core.cache import cache
 import uuid
-import json
+
+from rest_framework.authentication import BaseAuthentication
+from rest_framework import exceptions
+
 
 
 # Create your views here.
@@ -16,12 +18,6 @@ import json
 def index(request):
     return render(request, 'index.html')
     
-    
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserModel
-#         fields = 'id', 'username', 'password'
-
 class statics :
     str_id = 'id'
     str_username = 'username'
@@ -71,7 +67,6 @@ class LoginAPI(APIView):
 
 
         token = uuid.uuid4().hex
-        # cache.set(token, user.id, timeout=60 * 60)
         cache.set(token, username, timeout=60 * 60)
         
         
@@ -83,14 +78,30 @@ class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomerModel
         fields = statics.str_id, statics.str_name,statics.str_age, statics.str_address
-      
+
+class MyTokenAuthentication (BaseAuthentication):
+    def authenticate(self, request):
+        """
+        Authenticate the request and return a two-tuple of (user, token).
+        """
+        token = request._request.GET.get(statics.str_token)
+        username = cache.get(token)
+        if(username == None) :
+            raise exceptions.AuthenticationFailed('token authentification failed')
+        return (username,token)
+            
+    def authenticate_header(self, request):
+        """
+        Return a string to be used as the value of the `WWW-Authenticate`
+        header in a `401 Unauthenticated` response, or `None` if the
+        authentication scheme should return `403 Permission Denied` responses.
+        """
+        pass
+ 
 class CustomerAPI(APIView):
+    authentication_classes = [MyTokenAuthentication,]
+    
     def post(self, request):
-        
-        username = request.query_params[statics.str_username]
-        token = request.query_params[statics.str_token]
-        # TODO
-        
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -100,18 +111,11 @@ class CustomerAPI(APIView):
         
         
     def get(self, request):
-        username = request.query_params[statics.str_username]
-        token = request.query_params[statics.str_token]
-        # TODO
-        
         objAllCustomers = CustomerModel.objects.all()
         serializers = CustomerSerializer (instance=objAllCustomers ,many = True)
         return JsonResponse({statics.str_success : True ,statics.str_data:serializers.data,statics.str_message:'success'})
         
-        
-       
     def put(self, request):
-        # TODO
         id = request.data[statics.str_id]
         name = request.data[statics.str_name]
         age = request.data[statics.str_age]
@@ -120,13 +124,10 @@ class CustomerAPI(APIView):
         
         return JsonResponse({statics.str_success : True , statics.str_message:'success'})
     
-    
-    
-    
     def delete(self, request):
-        # TODO
         id = request.data[statics.str_id]
         CustomerModel.objects.filter(id=id).delete()
         return JsonResponse({statics.str_success : True , statics.str_message:'success'})
 
+    
     

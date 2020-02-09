@@ -7,7 +7,7 @@ import SR from './StringResource.js';
 
 export default class CreateAndUpdateModal extends Component {
     static propTypes = {
-        prop: PropTypes
+        token: PropTypes.string.isRequired,
     }
 
     state = {
@@ -72,8 +72,8 @@ export default class CreateAndUpdateModal extends Component {
             url: '/api/vi/customer',
             method: 'post', 
             params: {
-                username: 'todo',
-                token:'todo',
+                // username: 'todo',
+                token:this.props.token,
               },
             data: objData ,
         })
@@ -99,8 +99,8 @@ export default class CreateAndUpdateModal extends Component {
             url: '/api/vi/customer',
             method: 'put', 
             params: {
-                username: 'todo',
-                token:'todo',
+                // username: 'todo',
+                token:this.props.token,
               },
             data: objData ,
         })

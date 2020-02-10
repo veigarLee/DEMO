@@ -72,7 +72,6 @@ export default class CreateAndUpdateModal extends Component {
             url: '/api/vi/customer',
             method: 'post', 
             params: {
-                // username: 'todo',
                 token:this.props.token,
               },
             data: objData ,
@@ -99,7 +98,6 @@ export default class CreateAndUpdateModal extends Component {
             url: '/api/vi/customer',
             method: 'put', 
             params: {
-                // username: 'todo',
                 token:this.props.token,
               },
             data: objData ,

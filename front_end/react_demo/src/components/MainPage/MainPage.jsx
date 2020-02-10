@@ -8,6 +8,7 @@ import { Layout, Menu, Icon } from 'antd';
 import { Redirect, Switch, Route ,Link } from 'react-router-dom'
 
 import CrudDemo from '../CrudDemo/CrudDemo'
+import ChartDemo from '../ChartDemo/ChartDemo'
 
 const { Header, Sider, Content } = Layout;
 
@@ -49,7 +50,7 @@ export default class MainPage extends Component {
                     <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
                         <Menu.Item key="1">
                             <Link to="/CrudDemo">
-                                <Icon type="user" />
+                                <Icon type="home" />
                                 <span>Crud Demo</span>
                             </Link> 
                         </Menu.Item>
@@ -57,15 +58,15 @@ export default class MainPage extends Component {
 
                         <Menu.Item key="2">
                             <Link to="/ChartDemo">
-                                <Icon type="video-camera" />
+                                <Icon type="bar-chart" />
                                 <span>Chart Demo</span>
                             </Link>
 
                         </Menu.Item>
-                        <Menu.Item key="3">
+                        {/* <Menu.Item key="3">
                             <Icon type="upload" />
-                            <span>nav 3</span>
-                        </Menu.Item>
+                            <span>TODO</span>
+                        </Menu.Item> */}
                     </Menu>
                 </Sider>
                 <Layout>
@@ -86,6 +87,7 @@ export default class MainPage extends Component {
                     >
                         <Switch>
                             <Route path="/CrudDemo" ><CrudDemo token = {this.state.token}/></Route>
+                            <Route path="/ChartDemo" ><ChartDemo token = {this.state.token}/></Route>
                             <Redirect to="/CrudDemo" ></Redirect>
                         </Switch>
                     </Content>

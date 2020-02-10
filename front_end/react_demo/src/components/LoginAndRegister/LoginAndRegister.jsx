@@ -138,7 +138,7 @@ class LoginAndRegisterBase extends Component {
         };
         return (
             <div className = "Container">
-                <Card className="ContainerCard" title="DEMO" extra={<a >Account</a>}  >
+                <Card className="ContainerCard" title="DEMO" extra={<a onClick={this.funcShowRegisterModal}>Account</a>}  >
                     <Form onSubmit={this.funcHandleSubmitLogin} className="login-form">
                         <Form.Item>
                             {getFieldDecorator(StringResource.username, {
@@ -172,7 +172,7 @@ class LoginAndRegisterBase extends Component {
                     </Form>
                     <Modal
                         centered
-                        title="Title"
+                        title="Register"
                         visible={visible}
                         onOk={this.funcHandleSubmitRegister}
                         confirmLoading={confirmLoading}

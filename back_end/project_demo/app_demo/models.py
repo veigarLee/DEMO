@@ -12,5 +12,5 @@ class UserModel(models.Model):
 
 class CustomerModel(models.Model):
     name = models.CharField(max_length=32)
-    age = models.DecimalField(max_digits= 100 , decimal_places= 0)
+    age = models.IntegerField( )
     address = models.CharField(max_length=256)

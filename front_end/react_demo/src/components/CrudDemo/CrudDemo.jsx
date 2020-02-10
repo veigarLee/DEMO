@@ -56,7 +56,6 @@ export default class CrudDemo extends Component {
             url: '/api/vi/customer',
             method: 'get', 
             params: {
-                // username: 'todo',
                 token:this.props.token,
               },
         })
@@ -84,7 +83,6 @@ export default class CrudDemo extends Component {
             url: '/api/vi/customer',
             method: 'delete',
             params: {
-                // username: 'todo',
                 token: this.props.token,
             },
             data: objData,
